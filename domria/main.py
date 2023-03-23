@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as BS
-from time import sleep 
+from time import sleep
 import pandas
 import sys
 
