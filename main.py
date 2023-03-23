@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as BS
-from time import sleep 
+from time import sleep
 import pandas
 import sys
 
@@ -8,7 +8,7 @@ data = []
 
 staturl = "https://rieltor.ua/kiev/flats-rent/?page=1"
 re = requests.get(staturl)
-m = BS(re.text, 'html.parser')
+m = BS(re.text, 'lxml')
 maxp = m.find('li', class_ = 'last').find('a', class_ = 'pager-btn').text               # ця конструкція дістає максимально доступний номер сторінки з сайту
 
 fp = input("Введіть номер сторінки з якої ви хочете почати: ")
