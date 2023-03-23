@@ -2,6 +2,3 @@ requests
 BeautifulSoup
 pandas
 lxml
-=======
-beautifulsoup4
-pandas
