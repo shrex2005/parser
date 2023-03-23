@@ -8,7 +8,7 @@ data = []
 
 staturl = "https://rst.ua/ukr/oldcars/ford/fusion/"
 re = requests.get(staturl)
-m = BS(re.text, 'html.parser')
+m = BS(re.content, 'lxml')
 mpage = m.find('li', class_='active').find('a', class_='').text
 print(mpage)
 

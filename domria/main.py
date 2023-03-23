@@ -8,7 +8,7 @@ data = []
 
 staturl = "https://rieltor.ua/kiev/flats-rent/?page=1"
 re = requests.get(staturl)
-m = BS(re.text, 'html.parser')
+m = BS(re.text, 'lxml')
 maxp = m.find('li', class_ = 'last').find('a', class_ = 'pager-btn').text               # ця конструкція дістає максимально доступний номер сторінки з сайту
 
 fp = input("Введіть номер сторінки з якої ви хочете почати: ")
@@ -28,7 +28,7 @@ if fp > 0 and lp <= maxp:
         for p in range(fp, lp + 1):                                             # цей цикл запбезпечує зміну сторінки
             url = f"https://rieltor.ua/kiev/flats-rent/?page={p}"              # у цій змінній зберігається посилання на актальну сторінку, яка змінюється з кожним циклом
             r = requests.get(url)
-            sleep(3)                                                           # затримка необхідна щоб не перенапружувати сервер
+            sleep(1)                                                           # затримка необхідна щоб не перенапружувати сервер
             html = BS(r.content, 'html.parser')
             aps = html.findAll('div', class_ = 'catalog-card')
             print(p, "сторінка:")                                              # це я використав для того щоб корситувач бачив етап збору даних
