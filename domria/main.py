@@ -31,9 +31,8 @@ async def domria():
             print("Процес завантаження даних: ")
             for p in range(fp, lp + 1):
                 async with aiohttp.ClientSession() as session:
-                    url = f"https://rieltor.ua/kiev/flats-rent/?page={p}" 
-                    async with session.get(url, headers=agent) as rp:                                             # цей цикл запбезпечує зміну сторінки
-                        url = f"https://rieltor.ua/kiev/flats-rent/?page={p}"              # у цій змінній зберігається посилання на актальну сторінку, яка змінюється з кожним циклом
+                    url = f"https://rieltor.ua/kiev/flats-rent/?page={p}"  # у цій змінній зберігається посилання на актальну сторінку, яка змінюється з кожним циклом
+                    async with session.get(url, headers=agent) as rp:                                             # цей цикл запбезпечує зміну сторінки                
                         r = await aiohttp.StreamReader.read(rp.content)
                         html = BS(r, 'lxml')
                         aps = html.findAll('div', {'class': 'catalog-card'})
