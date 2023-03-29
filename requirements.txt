@@ -1,4 +1,6 @@
-requests
-beautifulsoup4
-pandas
 lxml
+pandas
+asyncio
+requests
+fake_useragent
+beautifulsoup4
