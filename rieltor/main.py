@@ -48,7 +48,7 @@ async def domria():
                             data.append([link, price, address, rooms, sizes, flore])        # у цей масив зберігаються всі дані для зручного виводу
                     headers = ["Посилання", "Ціна", "Адреса", "Кількість кімнат", "Площа", "Поверх"]    # список за яким будуть заповнені верхні колонки датафрейму
                     df = pandas.DataFrame(data, columns = headers)                          # конвертація масиву з даними у датафрейм       
-                    df.to_csv('domria/your_table.csv')                                             # конвертація датафрейму у csv таблицю
+                    df.to_csv('rieltor/your_table.csv')                                             # конвертація датафрейму у csv таблицю
         else:
             sys.exit("Проміжок не підходить")
     else:

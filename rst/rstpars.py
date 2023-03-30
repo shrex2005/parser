@@ -7,10 +7,14 @@ from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
 async def rstua():
-
+    pages = input("ass")
     data = []
-
-    url = "https://rst.ua/ukr/oldcars/subaru/"
+    try:
+        requests.get(f"https://rst.ua/ukr/oldcars/subaru/{pages}.html")
+    except:
+        await rstua()
+    
+    url = f"https://rst.ua/ukr/oldcars/subaru/{pages}.html"
     agent = {'User-Agent': UserAgent().random}
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers=agent) as rp:
