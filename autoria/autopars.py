@@ -7,15 +7,17 @@ from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
 async def rstua():
-
+    m = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
+    maxpage = m.find('span', {'class': 'page-item dhide text-c'}).text
+    print(maxpage)
     fp = 1
     lp = int(input("Введіть номер сторінки на якій ви хочете завершити: "))
 
     data = []
     try:
-        requests.get(f"https://auto.ria.com/uk/legkovie/ford/?page={lp}.html")
-    except:
-        await rstua()
+        lp = int(lp)
+    except ValueError:
+        sys.exit("Не коректне значення")
     
     for p in range(fp, lp + 1):
         print(p)
