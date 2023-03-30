@@ -41,7 +41,10 @@ async def rstua():
                     #city = ap.find_all('li', {'class': 'item-char view-location js-location'})[0].text
                     engine = ap.find_all('li', {'class': 'item-char'})[2].text
                     box = ap.find_all('li', {'class': 'item-char'})[3].text
-                    print(f'Лінк: {link}\nЗаголовок: {title} \nЦіна: {priceUSD}$, {priceUAH}грн\nПробіг: {mileage}\nДвигун: {engine}\nКоробка: {box}\n')
+                    data.append([link, title, priceUSD, priceUAH, mileage, engine, box])
+                headers = ["Посилання", "Заголовок", "Ціна в $", "Ціна в грн", "Пробіг", "Двигун", "Коробка"]    # список за яким будуть заповнені верхні колонки датафрейму
+                df = pandas.DataFrame(data, columns = headers)                          # конвертація масиву з даними у датафрейм       
+                df.to_csv('autoria/your_table.csv')  
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
