@@ -7,9 +7,9 @@ from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
 async def rstua():
-    m = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
-    maxpage = m.find('span', {'class': 'page-item dhide text-c'}).text
-    print(maxpage)
+    # m = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
+    # maxpage = m.find_all('span', {'class': 'page-item dhide text-c'}).text
+    # print(maxpage)
     fp = 1
     lp = int(input("Введіть номер сторінки на якій ви хочете завершити: "))
 
@@ -20,7 +20,7 @@ async def rstua():
         sys.exit("Не коректне значення")
     
     for p in range(fp, lp + 1):
-        print(p)
+        print(f'Данні з {p} сторінки успішно завантаженні')
         url = f"https://auto.ria.com/uk/legkovie/ford/?page={p}.html"
         agent = {'User-Agent': UserAgent().random}
         async with aiohttp.ClientSession() as session:
@@ -41,6 +41,10 @@ async def rstua():
                     #city = ap.find_all('li', {'class': 'item-char view-location js-location'})[0].text
                     engine = ap.find_all('li', {'class': 'item-char'})[2].text
                     box = ap.find_all('li', {'class': 'item-char'})[3].text
+                    data.append([link, title, priceUSD, priceUAH, mileage, engine, box])
+                headers = ["Посилання", "Заголовок", "Ціна в $", "Ціна в грн", "Пробіг", "Двигун", "Коробка"]    # список за яким будуть заповнені верхні колонки датафрейму
+                df = pandas.DataFrame(data, columns = headers)                          # конвертація масиву з даними у датафрейм       
+                df.to_csv('autoria/your_table.csv')  
                     
 
 if __name__ == '__main__':
