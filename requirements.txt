@@ -1,5 +1,6 @@
 lxml
 pandas
+aiohttp
 asyncio
 requests
 fake_useragent
