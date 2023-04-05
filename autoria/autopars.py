@@ -39,7 +39,6 @@ async def rstua():
                         priceUSD = ap.find('span', {'class': 'bold green size22'}).text
                     priceUAH = ap.find('span', {'class': 'i-block'}).find('span', {'class': ''}).text
                     mileage = ap.find('li', {'class': 'item-char js-race'}).text
-                    #city = ap.find_all('li', {'class': 'item-char view-location js-location'})[0].text
                     engine = ap.find_all('li', {'class': 'item-char'})[2].text
                     box = ap.find_all('li', {'class': 'item-char'})[3].text
                     data.append([link, title, priceUSD, priceUAH, mileage, engine, box])
