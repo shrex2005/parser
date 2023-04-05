@@ -7,9 +7,10 @@ from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
 async def rstua():
-    # m = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
-    # maxpage = m.find_all('span', {'class': 'page-item dhide text-c'}).text
-    # print(maxpage)
+    re = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
+    m = BS(re.text, 'lxml')
+    maxpage = m.find('span', {'class': 'page-item dhide text-c'}).text
+    print(f'Максимальна доступна сторінка: {maxpage.split("/")[1]}')
     fp = 1
     lp = int(input("Введіть номер сторінки на якій ви хочете завершити: "))
 
@@ -45,7 +46,7 @@ async def rstua():
                 headers = ["Посилання", "Заголовок", "Ціна в $", "Ціна в грн", "Пробіг", "Двигун", "Коробка"]    # список за яким будуть заповнені верхні колонки датафрейму
                 df = pandas.DataFrame(data, columns = headers)                          # конвертація масиву з даними у датафрейм       
                 df.to_csv('autoria/your_table.csv')  
-                    
+
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
