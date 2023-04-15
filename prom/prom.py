@@ -17,7 +17,6 @@ async def prom():
         sys.exit("Не коректне значення")
 
     for p in range(fp, lp + 1):
-        print(f'Данні з {p} сторінки успішно завантаженні')
         url = f"https://prom.ua/ua/Noutbuki;{p}" 
         agent = {'User-Agent': UserAgent().random}
 
@@ -32,9 +31,9 @@ async def prom():
                     title = ap.find('a', {'class': '_0cNvO jwtUM'}).get('title')
 
                     try:
-                        price = ap.find('div', {'class', 'IP36L bkjEo'}).find('span').text
+                        price = ap.find('div', {'class', 'IP36L bkjEo'}).get('data-qaprice')
                     except Exception:
-                        price = ap.find('div', {'class', 'bkjEo'}).find('span').text
+                        price = ap.find('div', {'class': 'bkjEo'}).get('data-qaprice')
 
                     shop_link = ap.find('div', {'class': 'M3v0L BXDW- qzGRQ aO9Co'}).find('a', {'class': '_0cNvO jwtUM'}).get('href')
                     shop_name = ap.find('div', {'class': 'M3v0L BXDW- qzGRQ aO9Co'}).find('a', {'class': '_0cNvO jwtUM'}).text
@@ -48,10 +47,12 @@ async def prom():
                             shop_raiting = 'None'
 
                     data.append([f'https://prom.ua{link}', title, price, shop_link, shop_name, shop_raiting])
+                print(f'Данні з {p} сторінки успішно завантаженні')
 
                 headers = ["Посилання", "Заголовок", "Ціна", "Лінк на магазин", "Ім'я магазину", "Рейтинг магазину"]    # список за яким будуть заповнені верхні колонки датафрейму
                 df = pandas.DataFrame(data, columns = headers)                          # конвертація масиву з даними у датафрейм       
                 df.to_csv('prom/your_table.csv')
+                
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
