@@ -2,11 +2,11 @@ import sys
 import pandas
 import asyncio
 import aiohttp
-import requests
 from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
 async def prom():
+
     fp = 1
     lp = int(input("Введіть номер сторінки на якій ви хочете завершити: "))
 
