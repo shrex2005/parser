@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
 
-async def rstua():
+async def autoria():
     re = requests.get("https://auto.ria.com/uk/legkovie/ford/?page=1.html")
     m = BS(re.text, 'lxml')
     maxpage = m.find('span', {'class': 'page-item dhide text-c'}).text
@@ -52,4 +52,4 @@ async def rstua():
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(rstua())
+    loop.run_until_complete(autoria())
