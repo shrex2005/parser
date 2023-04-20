@@ -65,8 +65,6 @@ async def rozetka():
                                 status = ap.find('div', {'class': 'goods-tile__availability goods-tile__availability--available ng-star-inserted'}).text
                             except Exception:
                                 status = ap.find('div', {'class': 'goods-tile__availability goods-tile__availability--out_of_stock ng-star-inserted'}).text                            
-                            
-                            print(link, title, raiting, feedback, old_price, current_price, status)
 
                             data.append([link, title, raiting, feedback, old_price, current_price, status])
                         print(f'Данні з {p} сторінки успішно завантаженні')
