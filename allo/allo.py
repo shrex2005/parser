@@ -63,10 +63,6 @@ async def allo():
                             
                             characteristic = ap.find('div', {'class': 'product-card__detail'}).find('dd').text
 
-
-                            print(link, title, cur_price, old_price, characteristic, feedback_count)
-                                            
-
                             data.append([link, title, cur_price, old_price, characteristic, feedback_count])
                         print(f'Данні з {p} сторінки успішно завантаженні')
 
