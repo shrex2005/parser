@@ -63,7 +63,6 @@ async def comfy():
 
                             price = ap.find('div', {'class': 'products-list-item__actions-price-current'}).text
                             
-
                             try:
                                 old_price = ap.find('div', {'class': 'products-list-item__actions-price-old'}).text
                             except Exception:
